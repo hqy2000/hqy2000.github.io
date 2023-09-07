@@ -17,6 +17,11 @@
             zoom: 1.5;
         }
     </style>
+    <script>
+        function openUrl(url) {
+            window.open(url, '_blank');
+        }
+    </script>
 </head>
 
 <body>
@@ -29,31 +34,28 @@
             <fieldset>
                 <legend>Professional Links</legend>
                 <div class="field-row">
-                    <button id="resume">Resume</button>
+                    <button id="resume" onclick="openUrl('Qingyang_Hu_20230906.pdf')">Resume</button>
                     <label for="resume">Check out my latest resume for a detailed look at my professional
                         journey.</label>
                 </div>
                 <div class="field-row">
-                    <button id="linkedin">LinkedIn</button>
+                    <button id="linkedin" onclick="openUrl('https://www.linkedin.com/in/hqy2000/')">LinkedIn</button>
                     <label for="linkedin">Connect with me on LinkedIn to see my professional network and
                         endorsements.</label>
                 </div>
                 <div class="field-row">
-                    <button id="github">GitHub</button>
+                    <button id="github" onclick="openUrl('https://github.com/hqy2000')">GitHub</button>
                     <label for="github">Explore my coding projects and repositories on GitHub.</label>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Just For Fun</legend>
                 <div class="field-row">
-                    <button id="youtube">YouTube</button>
+                    <button id="youtube" onclick="openUrl('https://www.youtube.com/@njliner')">YouTube</button>
                     <label for="youtube">Watch my videos to explore the fascinating world of trains.
                     </label>
                 </div>
             </fieldset>
-        </div>
-        <div class="status-bar">
-            <p class="status-bar-field">Contact admin@hqy2000.com for help.</p>
         </div>
     </div>
 </div>
