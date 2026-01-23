@@ -1,65 +1,292 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Qingyang Hu | Links</title>
+    <title>Qingyang Hu</title>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="https://unpkg.com/xp.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Qingyang Hu — introduction and a timeline of things I've built."/>
     <style>
-        html, body, .container {
-            height: 100%;
-            overflow: hidden;
+        :root {
+            --bg: #0b1020;
+            --panel: rgba(255, 255, 255, 0.06);
+            --panel-2: rgba(255, 255, 255, 0.10);
+            --text: rgba(255, 255, 255, 0.92);
+            --muted: rgba(255, 255, 255, 0.70);
+            --muted-2: rgba(255, 255, 255, 0.55);
+            --brand: #8ab4ff;
+            --accent: #73fbd3;
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
+            --radius: 16px;
+            --max: 1040px;
+            --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
         }
 
-        .container {
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
+        body {
+            margin: 0;
+            font-family: var(--sans);
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        a { color: inherit; text-decoration: none; }
+        a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+        main { max-width: var(--max); margin: 0 auto; padding: 26px 18px 64px; }
+
+        .hero {
+            margin-top: 18px;
+            padding: 26px;
+            border-radius: var(--radius);
+            background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: var(--shadow);
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(32px, 4vw, 46px);
+            letter-spacing: -0.6px;
+        }
+        .hero p {
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 72ch;
+        }
+        .cta {
+            margin-top: 18px;
             display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .btn {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            zoom: 1.5;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.07);
+            color: var(--text);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .btn:hover { background: rgba(255,255,255,0.11); text-decoration: none; }
+
+        .tag {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--muted);
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            padding: 6px 10px;
+            border-radius: 999px;
+        }
+
+        section {
+            margin-top: 22px;
+        }
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 18px 2px 12px;
+        }
+        .section-head h2 {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: -0.25px;
+        }
+        .section-head .hint {
+            margin: 0;
+            color: var(--muted-2);
+            font-size: 13px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 8px;
+        }
+        @media (max-width: 860px) { .projects { grid-template-columns: 1fr; } }
+
+        .p-card {
+            padding: 16px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+        }
+        .p-top {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .p-top h3 {
+            margin: 0;
+            font-size: 15px;
+            letter-spacing: -0.2px;
+        }
+        .p-top a {
+            color: var(--brand);
+            font-size: 13px;
+            font-weight: 650;
+        }
+        .p-date {
+            margin: 8px 0 0;
+            color: var(--muted-2);
+            font-family: var(--mono);
+            font-size: 12px;
+        }
+        .p-desc {
+            margin: 10px 0 0;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+        .p-meta {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
     </style>
-    <script>
-        function openUrl(url) {
-            window.open(url, '_blank');
-        }
-    </script>
+    <script defer src="https://analytics.hqy2000.com/script.js" data-website-id="1fce406f-dcdd-4ed7-995a-46456d4a86ed"></script>
 </head>
 
 <body>
-<div class="container">
-    <div class="window" style="width: 500px">
-        <div class="title-bar">
-            <div class="title-bar-text">Qingyang Hu — Main Menu</div>
+
+<main>
+    <section class="hero" id="top">
+        <h1>Hi, I’m Qingyang.</h1>
+        <p>
+            I design and build scalable backend infrastructure for AI, and polished iOS experiences.
+        </p>
+        <div class="cta">
+            <a class="btn" href="Qingyang_Hu_20251101.pdf" target="_blank" rel="noopener noreferrer">View resume (PDF)</a>
+            <a class="btn" href="https://github.com/hqy2000" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a class="btn" href="https://www.linkedin.com/in/hqy2000/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
         </div>
-        <div class="window-body">
-            <fieldset>
-                <legend>Professional Highlights</legend>
-                <div class="field-row">
-                    <button id="resume" onclick="openUrl('Qingyang_Hu_20251101.pdf')">Resume</button>
-                    <label for="resume">Browse my resume for a concise overview of experience, impact, and
-                        skills.</label>
-                </div>
-                <div class="field-row">
-                    <button id="linkedin" onclick="openUrl('https://www.linkedin.com/in/hqy2000/')">LinkedIn</button>
-                    <label for="linkedin">Join me on LinkedIn to follow career updates and professional
-                        collaborations.</label>
-                </div>
-                <div class="field-row">
-                    <button id="github" onclick="openUrl('https://github.com/hqy2000')">GitHub</button>
-                    <label for="github">Explore open-source projects, tooling experiments, and coding deep
-                        dives.</label>
-                </div>
-            </fieldset>
-            <fieldset>
-                <legend>Beyond Work</legend>
-                <div class="field-row">
-                    <button id="youtube" onclick="openUrl('https://www.youtube.com/@njliner')">YouTube</button>
-                    <label for="youtube">Hop aboard my rail-themed channel for train spotlights and travel
-                        stories.</label>
-                </div>
-            </fieldset>
+    </section>
+
+    <section id="timeline" aria-label="Timeline of things I’ve built">
+        <div class="section-head">
+            <h2>Projects I've Worked On</h2>
         </div>
-    </div>
-</div>
+
+        <div class="projects" aria-label="Projects">
+            <article class="p-card">
+                <div class="p-top">
+                    <h3>IXL Learning (iOS App)</h3>
+                    <a href="https://apps.apple.com/us/app/ixl-math-english-more/id693689912" target="_blank" rel="noopener noreferrer">App Store ↗</a>
+                </div>
+                <div class="p-date">2023 – 2025</div>
+                <p class="p-desc">
+                    Shipped core calculator and assessment features for IXL’s iOS app, used by 1 in 4 K–12 students in the United States, with a focus on reliability and performance.
+                </p>
+                <div class="p-meta" aria-label="Tech tags">
+                    <span class="tag">iOS</span>
+                    <span class="tag">SwiftUI</span>
+                    <span class="tag">EdTech</span>
+                </div>
+            </article>
+
+            <article class="p-card">
+                <div class="p-top">
+                    <h3>CALICOJudge</h3>
+                    <a href="https://calicojudge.com" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                </div>
+                <div class="p-date">2024 – Present</div>
+                <p class="p-desc">
+                    Lead infrastructure for CALICO, UC Berkeley’s high school programming contest, running on Google Cloud Platform with auto-scaling support for 2,000+ concurrent contestants.
+                </p>
+                <div class="p-meta" aria-label="Tech tags">
+                    <span class="tag">GCP</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Infrastructure</span>
+                </div>
+            </article>
+
+            <article class="p-card">
+                <div class="p-top">
+                    <h3>BayAreaCloudCity</h3>
+                    <a href="https://github.com/BayAreaCloudCity?view_as=public" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                </div>
+                <div class="p-date">2024</div>
+                <p class="p-desc">
+                    Built a domain‑specific language for describing streaming data pipelines with GCP, making it easy for domain experts without infrastructure expertise to define, deploy, and evolve real-time jobs.
+                </p>
+                <div class="p-meta" aria-label="Tech tags">
+                    <span class="tag">GCP</span>
+                    <span class="tag">Apache Beam / Dataflow</span>
+                    <span class="tag">Apache Kafka / PubSub</span>
+                </div>
+            </article>
+
+            <article class="p-card">
+                <div class="p-top">
+                    <h3>EMURoutingTracker</h3>
+                    <a href="https://github.com/hqy2000/EMURoutingTracker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                </div>
+                <div class="p-date">2019 – Present</div>
+                <p class="p-desc">
+                    A real-time routing tracker for electric multiple unit trains, built in SwiftUI.
+                </p>
+                <div class="p-meta" aria-label="Tech tags">
+                    <span class="tag">SwiftUI</span>
+                    <span class="tag">Realtime</span>
+                    <span class="tag">iOS</span>
+                </div>
+            </article>
+
+            <article class="p-card">
+                <div class="p-top">
+                    <h3>Programming Assessments (UCSD CSE)</h3>
+                    <a href="https://github.com/CaoAssignments" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+                </div>
+                <div class="p-date">2020 – 2023</div>
+                <p class="p-desc">
+                    Created programming assessments for introductory UCSD CSE courses and maintained the automated grading infrastructure on Gradescope.
+                </p>
+                <div class="p-meta" aria-label="Tech tags">
+                    <span class="tag">Docker</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">Python</span>
+                </div>
+            </article>
+
+            <article class="p-card">
+                <div class="p-top">
+                    <h3>Luogu</h3>
+                    <a href="https://luogu.com.cn" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                </div>
+                <div class="p-date">2017 – 2019</div>
+                <p class="p-desc">
+                    Contributed to the largest online programming learning platform in China.
+                </p>
+                <div class="p-meta" aria-label="Tech tags">
+                    <span class="tag">Full-Stack</span>
+                    <span class="tag">PHP</span>
+                    <span class="tag">Vue</span>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+
+<script>
+    // tiny enhancement: current year
+    document.getElementById('y').textContent = new Date().getFullYear().toString();
+</script>
 
 </body>
 </html>
