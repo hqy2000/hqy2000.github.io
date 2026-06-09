@@ -5,159 +5,304 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="Qingyang Hu — introduction and a timeline of things I've built."/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg: #0b1020;
-            --panel: rgba(255, 255, 255, 0.06);
-            --panel-2: rgba(255, 255, 255, 0.10);
-            --text: rgba(255, 255, 255, 0.92);
-            --muted: rgba(255, 255, 255, 0.70);
-            --muted-2: rgba(255, 255, 255, 0.55);
-            --brand: #8ab4ff;
-            --accent: #73fbd3;
-            --border: rgba(255, 255, 255, 0.12);
-            --shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
-            --radius: 16px;
-            --max: 1040px;
-            --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            --paper:    #f1ebdf;
+            --paper-2:  #ece5d6;
+            --ink:      #1a1712;
+            --muted:    rgba(26, 23, 18, 0.66);
+            --muted-2:  rgba(26, 23, 18, 0.48);
+            --line:     rgba(26, 23, 18, 0.16);
+            --line-2:   rgba(26, 23, 18, 0.28);
+            --accent:   #b8431f;
+            --accent-d: #93351a;
+            --max:      980px;
+
+            --serif: "Fraunces", Georgia, "Times New Roman", serif;
+            --sans:  "Hanken Grotesk", -apple-system, system-ui, sans-serif;
+            --mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
         }
 
         * { box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
         html, body { height: 100%; }
+
         body {
             margin: 0;
             font-family: var(--sans);
-            color: var(--text);
-            background: var(--bg);
+            color: var(--ink);
+            background-color: var(--paper);
+            /* faint film grain so the paper has tooth, not a flat fill */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
         }
 
         a { color: inherit; text-decoration: none; }
-        a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-        main { max-width: var(--max); margin: 0 auto; padding: 26px 18px 64px; }
+        /* selection styled to match the accent */
+        ::selection { background: var(--accent); color: var(--paper); }
 
-        .hero {
-            margin-top: 18px;
-            padding: 26px;
-            border-radius: var(--radius);
-            background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: var(--shadow);
+        .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+        /* ---------- masthead ---------- */
+        .masthead {
+            border-bottom: 1px solid var(--line);
+            position: sticky; top: 0; z-index: 20;
+            background: color-mix(in srgb, var(--paper) 88%, transparent);
+            backdrop-filter: saturate(120%) blur(6px);
         }
-        .hero h1 {
-            margin: 0;
-            font-size: clamp(32px, 4vw, 46px);
-            letter-spacing: -0.6px;
+        .masthead .wrap {
+            display: flex; align-items: baseline; justify-content: space-between;
+            padding-top: 16px; padding-bottom: 16px; gap: 16px;
         }
-        .hero p {
-            margin: 12px 0 0;
-            color: var(--muted);
-            font-size: 16px;
-            line-height: 1.7;
-            max-width: 72ch;
-        }
-        .cta {
-            margin-top: 18px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 10px 14px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.07);
-            color: var(--text);
+        .mark {
+            font-family: var(--serif);
             font-weight: 600;
-            font-size: 14px;
+            font-size: 17px;
+            letter-spacing: 0.2px;
         }
-        .btn:hover { background: rgba(255,255,255,0.11); text-decoration: none; }
+        .mark .dot { color: var(--accent); }
+        .masthead .meta {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted-2);
+        }
 
-        .tag {
+        /* ---------- hero ---------- */
+        .hero { padding: clamp(56px, 11vw, 116px) 0 clamp(40px, 7vw, 72px); }
+
+        .kicker {
             font-family: var(--mono);
             font-size: 12px;
-            color: var(--muted);
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.04);
-            padding: 6px 10px;
-            border-radius: 999px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-d);
+            margin: 0 0 26px;
+            display: inline-flex; align-items: center; gap: 12px;
+        }
+        .kicker::before {
+            content: ""; width: 34px; height: 1px;
+            background: var(--accent); display: inline-block;
         }
 
-        section {
-            margin-top: 22px;
+        .hero h1 {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-optical-sizing: auto;
+            font-size: clamp(46px, 9vw, 104px);
+            line-height: 0.98;
+            letter-spacing: -0.02em;
+            margin: 0;
+            max-width: 14ch;
         }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .lede {
+            font-size: clamp(17px, 2.3vw, 21px);
+            line-height: 1.6;
+            color: var(--muted);
+            max-width: 56ch;
+            margin: 30px 0 0;
+            font-weight: 400;
+        }
+        .lede strong { color: var(--ink); font-weight: 600; }
+
+        .cta { margin-top: 38px; display: flex; flex-wrap: wrap; gap: 10px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 9px;
+            font-family: var(--mono);
+            font-size: 13px;
+            letter-spacing: 0.01em;
+            padding: 11px 16px;
+            border: 1px solid var(--line-2);
+            border-radius: 2px;
+            color: var(--ink);
+            background: transparent;
+            transition: background-color .22s ease, border-color .22s ease, color .22s ease, transform .22s ease;
+        }
+        .btn .arr { transition: transform .22s ease; color: var(--muted-2); }
+        .btn:hover {
+            background: var(--ink); color: var(--paper);
+            border-color: var(--ink);
+        }
+        .btn:hover .arr { transform: translate(2px, -2px); color: var(--paper); }
+        .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+        .btn.primary .arr { color: rgba(255,255,255,0.7); }
+        .btn.primary:hover { background: var(--accent-d); border-color: var(--accent-d); }
+
+        /* ---------- section head ---------- */
         .section-head {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 10px;
-            margin: 18px 2px 12px;
+            display: flex; align-items: baseline; justify-content: space-between;
+            gap: 16px;
+            padding-top: 26px;
+            border-top: 1px solid var(--line);
         }
         .section-head h2 {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: clamp(22px, 3vw, 30px);
+            letter-spacing: -0.01em;
             margin: 0;
-            font-size: 18px;
-            letter-spacing: -0.25px;
         }
-        .section-head .hint {
-            margin: 0;
-            color: var(--muted-2);
-            font-size: 13px;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px;
-            margin-top: 8px;
-        }
-        @media (max-width: 860px) { .projects { grid-template-columns: 1fr; } }
-
-        .p-card {
-            padding: 16px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.10);
-        }
-        .p-top {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .p-top h3 {
-            margin: 0;
-            font-size: 15px;
-            letter-spacing: -0.2px;
-        }
-        .p-top a {
-            color: var(--brand);
-            font-size: 13px;
-            font-weight: 650;
-        }
-        .p-date {
-            margin: 8px 0 0;
-            color: var(--muted-2);
+        .section-head .count {
             font-family: var(--mono);
             font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted-2);
+            white-space: nowrap;
         }
+
+        /* ---------- projects ---------- */
+        .projects {
+            list-style: none;
+            margin: 0; padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0;
+            border-top: 1px solid var(--line);
+            margin-top: 30px;
+        }
+        @media (max-width: 720px) { .projects { grid-template-columns: 1fr; } }
+
+        .p-card {
+            position: relative;
+            padding: 26px 26px 28px;
+            border-bottom: 1px solid var(--line);
+            border-right: 1px solid var(--line);
+            display: flex; flex-direction: column;
+            transition: background-color .25s ease;
+        }
+        /* tidy the grid edges so borders never double up */
+        .p-card:nth-child(2n) { border-right: 0; }
+        @media (max-width: 720px) { .p-card { border-right: 0; } }
+
+        .p-card::before {
+            /* accent rail that grows on hover */
+            content: ""; position: absolute; left: 0; top: -1px; bottom: -1px;
+            width: 2px; background: var(--accent);
+            transform: scaleY(0); transform-origin: top;
+            transition: transform .3s cubic-bezier(.2,.7,.3,1);
+        }
+        .p-card:hover { background: var(--paper-2); }
+        .p-card:hover::before { transform: scaleY(1); }
+
+        .p-head {
+            display: flex; align-items: baseline; justify-content: space-between;
+            gap: 14px; margin-bottom: 14px;
+        }
+        .p-index {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+        }
+        .p-date {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--muted-2);
+            white-space: nowrap;
+        }
+
+        .p-title {
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: 21px;
+            line-height: 1.18;
+            letter-spacing: -0.01em;
+            margin: 0;
+        }
+        .p-title .sub { color: var(--muted-2); font-style: italic; font-size: 0.82em; font-weight: 400; }
+
         .p-desc {
-            margin: 10px 0 0;
             color: var(--muted);
-            line-height: 1.7;
-            font-size: 14px;
+            font-size: 14.5px;
+            line-height: 1.62;
+            margin: 11px 0 0;
         }
-        .p-meta {
-            margin-top: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+
+        .p-foot {
+            margin-top: 18px; padding-top: 14px;
+            border-top: 1px dashed var(--line);
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 12px; flex-wrap: wrap;
+        }
+        .p-tags {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            letter-spacing: 0.02em;
+            color: var(--muted-2);
+            text-transform: lowercase;
+        }
+        .p-tags span:not(:last-child)::after { content: " · "; color: var(--line-2); }
+
+        .p-link {
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 0.02em;
+            color: var(--ink);
+            display: inline-flex; align-items: center; gap: 6px;
+            border-bottom: 1px solid transparent;
+            transition: color .2s ease, border-color .2s ease;
+            white-space: nowrap;
+        }
+        .p-link .arr { transition: transform .2s ease; }
+        .p-card:hover .p-link { color: var(--accent-d); }
+        .p-link:hover { border-color: var(--accent); }
+        .p-link:hover .arr { transform: translate(2px, -2px); }
+
+        /* ---------- footer ---------- */
+        footer {
+            border-top: 1px solid var(--line);
+            margin-top: 4px;
+            padding: 28px 0 56px;
+        }
+        footer .wrap {
+            display: flex; align-items: baseline; justify-content: space-between;
+            gap: 16px; flex-wrap: wrap;
+        }
+        footer .sig { font-family: var(--serif); font-size: 15px; }
+        footer .sig .dot { color: var(--accent); }
+        footer .colophon {
+            font-family: var(--mono); font-size: 11.5px;
+            color: var(--muted-2); letter-spacing: 0.04em;
+        }
+        footer a:hover { color: var(--accent-d); }
+
+        /* ---------- entrance ---------- */
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: none; }
+        }
+        .reveal { opacity: 0; animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
+        .hero .kicker.reveal { animation-delay: .02s; }
+        .hero h1.reveal      { animation-delay: .10s; }
+        .hero .lede.reveal   { animation-delay: .20s; }
+        .hero .cta.reveal    { animation-delay: .30s; }
+        .projects .p-card { opacity: 0; animation: rise .6s cubic-bezier(.2,.7,.3,1) forwards; }
+        .projects .p-card:nth-child(1) { animation-delay: .34s; }
+        .projects .p-card:nth-child(2) { animation-delay: .40s; }
+        .projects .p-card:nth-child(3) { animation-delay: .46s; }
+        .projects .p-card:nth-child(4) { animation-delay: .52s; }
+        .projects .p-card:nth-child(5) { animation-delay: .58s; }
+        .projects .p-card:nth-child(6) { animation-delay: .64s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .projects .p-card { animation: none; opacity: 1; }
+            .btn, .p-link, .p-card, .p-card::before { transition: none; }
         }
     </style>
     <script defer src="https://analytics.hqy2000.com/script.js" data-website-id="1fce406f-dcdd-4ed7-995a-46456d4a86ed"></script>
@@ -165,127 +310,140 @@
 
 <body>
 
+<header class="masthead">
+    <div class="wrap">
+        <span class="mark">Qingyang Hu<span class="dot">.</span></span>
+        <span class="meta">Backend &amp; iOS · Index 06</span>
+    </div>
+</header>
+
 <main>
     <section class="hero" id="top">
-        <h1>Hi, I’m Qingyang.</h1>
-        <p>
-            I design and build scalable backend infrastructure for AI, and polished iOS experiences.
-        </p>
-        <div class="cta">
-            <a class="btn" href="Qingyang_Hu_20251101.pdf" target="_blank" rel="noopener noreferrer">View resume (PDF)</a>
-            <a class="btn" href="https://github.com/hqy2000" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a class="btn" href="https://www.linkedin.com/in/hqy2000/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <div class="wrap">
+            <p class="kicker reveal">Infrastructure · iOS · Systems</p>
+            <h1 class="reveal">Hi, I&rsquo;m <em>Qingyang.</em></h1>
+            <p class="lede reveal">
+                I design and build <strong>scalable backend infrastructure for AI</strong>,
+                and <strong>polished iOS experiences</strong>.
+            </p>
+            <div class="cta reveal">
+                <a class="btn primary" href="https://github.com/hqy2000" target="_blank" rel="noopener noreferrer">GitHub<span class="arr">↗</span></a>
+                <a class="btn" href="https://www.linkedin.com/in/hqy2000/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="arr">↗</span></a>
+            </div>
         </div>
     </section>
 
-    <section id="timeline" aria-label="Timeline of things I’ve built">
-        <div class="section-head">
-            <h2>Projects I've Worked On</h2>
-        </div>
+    <section id="work" aria-label="Projects I've worked on">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Projects I&rsquo;ve Worked On</h2>
+                <span class="count">Selected · 06</span>
+            </div>
 
-        <div class="projects" aria-label="Projects">
-            <article class="p-card">
-                <div class="p-top">
-                    <h3>IXL Learning (iOS App)</h3>
-                    <a href="https://apps.apple.com/us/app/ixl-math-english-more/id693689912" target="_blank" rel="noopener noreferrer">App Store ↗</a>
-                </div>
-                <div class="p-date">2023 – 2025</div>
-                <p class="p-desc">
-                    Shipped core calculator and assessment features for IXL’s iOS app, used by 1 in 4 K–12 students in the United States, with a focus on reliability and performance.
-                </p>
-                <div class="p-meta" aria-label="Tech tags">
-                    <span class="tag">iOS</span>
-                    <span class="tag">SwiftUI</span>
-                    <span class="tag">EdTech</span>
-                </div>
-            </article>
+            <ol class="projects">
+                <li class="p-card">
+                    <div class="p-head">
+                        <span class="p-index">01</span>
+                        <span class="p-date">2023 – 2025</span>
+                    </div>
+                    <h3 class="p-title">IXL Learning <span class="sub">iOS App</span></h3>
+                    <p class="p-desc">
+                        Shipped core calculator and assessment features for IXL&rsquo;s iOS app, used by 1 in 4 K–12 students in the United States, with a focus on reliability and performance.
+                    </p>
+                    <div class="p-foot">
+                        <span class="p-tags"><span>iOS</span><span>SwiftUI</span><span>EdTech</span></span>
+                        <a class="p-link" href="https://apps.apple.com/us/app/ixl-math-english-more/id693689912" target="_blank" rel="noopener noreferrer">App Store <span class="arr">↗</span></a>
+                    </div>
+                </li>
 
-            <article class="p-card">
-                <div class="p-top">
-                    <h3>CALICOJudge</h3>
-                    <a href="https://calicojudge.com" target="_blank" rel="noopener noreferrer">Website ↗</a>
-                </div>
-                <div class="p-date">2024 – Present</div>
-                <p class="p-desc">
-                    Lead infrastructure for CALICO, UC Berkeley’s high school programming contest, running on Google Cloud Platform with auto-scaling support for 2,000+ concurrent contestants.
-                </p>
-                <div class="p-meta" aria-label="Tech tags">
-                    <span class="tag">GCP</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Infrastructure</span>
-                </div>
-            </article>
+                <li class="p-card">
+                    <div class="p-head">
+                        <span class="p-index">02</span>
+                        <span class="p-date">2024 – Present</span>
+                    </div>
+                    <h3 class="p-title">CALICOJudge</h3>
+                    <p class="p-desc">
+                        Lead infrastructure for CALICO, UC Berkeley&rsquo;s high school programming contest, running on Google Cloud Platform with auto-scaling support for 2,000+ concurrent contestants.
+                    </p>
+                    <div class="p-foot">
+                        <span class="p-tags"><span>GCP</span><span>Docker</span><span>Infrastructure</span></span>
+                        <a class="p-link" href="https://calicojudge.com" target="_blank" rel="noopener noreferrer">Website <span class="arr">↗</span></a>
+                    </div>
+                </li>
 
-            <article class="p-card">
-                <div class="p-top">
-                    <h3>BayAreaCloudCity</h3>
-                    <a href="https://github.com/BayAreaCloudCity?view_as=public" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                </div>
-                <div class="p-date">2024</div>
-                <p class="p-desc">
-                    Built a domain‑specific language for describing streaming data pipelines with GCP, making it easy for domain experts without infrastructure expertise to define, deploy, and evolve real-time jobs.
-                </p>
-                <div class="p-meta" aria-label="Tech tags">
-                    <span class="tag">GCP</span>
-                    <span class="tag">Apache Beam / Dataflow</span>
-                    <span class="tag">Apache Kafka / PubSub</span>
-                </div>
-            </article>
+                <li class="p-card">
+                    <div class="p-head">
+                        <span class="p-index">03</span>
+                        <span class="p-date">2024</span>
+                    </div>
+                    <h3 class="p-title">BayAreaCloudCity</h3>
+                    <p class="p-desc">
+                        Built a domain&#8209;specific language for describing streaming data pipelines with GCP, making it easy for domain experts without infrastructure expertise to define, deploy, and evolve real-time jobs.
+                    </p>
+                    <div class="p-foot">
+                        <span class="p-tags"><span>GCP</span><span>Beam / Dataflow</span><span>Kafka / PubSub</span></span>
+                        <a class="p-link" href="https://github.com/BayAreaCloudCity?view_as=public" target="_blank" rel="noopener noreferrer">GitHub <span class="arr">↗</span></a>
+                    </div>
+                </li>
 
-            <article class="p-card">
-                <div class="p-top">
-                    <h3>EMURoutingTracker</h3>
-                    <a href="https://github.com/hqy2000/EMURoutingTracker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                </div>
-                <div class="p-date">2019 – Present</div>
-                <p class="p-desc">
-                    A real-time routing tracker for electric multiple unit trains, built in SwiftUI.
-                </p>
-                <div class="p-meta" aria-label="Tech tags">
-                    <span class="tag">SwiftUI</span>
-                    <span class="tag">Realtime</span>
-                    <span class="tag">iOS</span>
-                </div>
-            </article>
+                <li class="p-card">
+                    <div class="p-head">
+                        <span class="p-index">04</span>
+                        <span class="p-date">2019 – Present</span>
+                    </div>
+                    <h3 class="p-title">EMURoutingTracker</h3>
+                    <p class="p-desc">
+                        A real-time routing tracker for electric multiple unit trains, built in SwiftUI.
+                    </p>
+                    <div class="p-foot">
+                        <span class="p-tags"><span>SwiftUI</span><span>Realtime</span><span>iOS</span></span>
+                        <a class="p-link" href="https://github.com/hqy2000/EMURoutingTracker" target="_blank" rel="noopener noreferrer">GitHub <span class="arr">↗</span></a>
+                    </div>
+                </li>
 
-            <article class="p-card">
-                <div class="p-top">
-                    <h3>Programming Assessments (UCSD CSE)</h3>
-                    <a href="https://github.com/CaoAssignments" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                </div>
-                <div class="p-date">2020 – 2023</div>
-                <p class="p-desc">
-                    Created programming assessments for introductory UCSD CSE courses and maintained the automated grading infrastructure on Gradescope.
-                </p>
-                <div class="p-meta" aria-label="Tech tags">
-                    <span class="tag">Docker</span>
-                    <span class="tag">Java</span>
-                    <span class="tag">Python</span>
-                </div>
-            </article>
+                <li class="p-card">
+                    <div class="p-head">
+                        <span class="p-index">05</span>
+                        <span class="p-date">2020 – 2023</span>
+                    </div>
+                    <h3 class="p-title">Programming Assessments <span class="sub">UCSD CSE</span></h3>
+                    <p class="p-desc">
+                        Created programming assessments for introductory UCSD CSE courses and maintained the automated grading infrastructure on Gradescope.
+                    </p>
+                    <div class="p-foot">
+                        <span class="p-tags"><span>Docker</span><span>Java</span><span>Python</span></span>
+                        <a class="p-link" href="https://github.com/CaoAssignments" target="_blank" rel="noopener noreferrer">GitHub <span class="arr">↗</span></a>
+                    </div>
+                </li>
 
-            <article class="p-card">
-                <div class="p-top">
-                    <h3>Luogu</h3>
-                    <a href="https://luogu.com.cn" target="_blank" rel="noopener noreferrer">Website ↗</a>
-                </div>
-                <div class="p-date">2017 – 2019</div>
-                <p class="p-desc">
-                    Contributed to the largest online programming learning platform in China.
-                </p>
-                <div class="p-meta" aria-label="Tech tags">
-                    <span class="tag">Full-Stack</span>
-                    <span class="tag">PHP</span>
-                    <span class="tag">Vue</span>
-                </div>
-            </article>
+                <li class="p-card">
+                    <div class="p-head">
+                        <span class="p-index">06</span>
+                        <span class="p-date">2017 – 2019</span>
+                    </div>
+                    <h3 class="p-title">Luogu</h3>
+                    <p class="p-desc">
+                        Contributed to the largest online programming learning platform in China.
+                    </p>
+                    <div class="p-foot">
+                        <span class="p-tags"><span>Full-Stack</span><span>PHP</span><span>Vue</span></span>
+                        <a class="p-link" href="https://luogu.com.cn" target="_blank" rel="noopener noreferrer">Website <span class="arr">↗</span></a>
+                    </div>
+                </li>
+            </ol>
         </div>
     </section>
 </main>
 
+<footer>
+    <div class="wrap">
+        <span class="sig">Qingyang Hu<span class="dot">.</span></span>
+        <span class="colophon">© <span id="year">2026</span> · Set in Fraunces &amp; JetBrains Mono</span>
+    </div>
+</footer>
+
 <script>
-    // tiny enhancement: current year
-    document.getElementById('y').textContent = new Date().getFullYear().toString();
+    document.getElementById('year').textContent = new Date().getFullYear().toString();
 </script>
 
 </body>
